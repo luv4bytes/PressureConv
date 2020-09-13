@@ -23,80 +23,17 @@
 #ifndef CONVERTER_H
 #define CONVERTER_H
 
+#include <map>
+
 namespace PressureConv
 {
     class Converter
     {
 
-    private:
-
-        /*  -- 1 millibar used to convert --
-         *
-         *  Following values are based on 1 mbar.
-         */
-
-        /// Millibar
-        const double mbar = 1;
-
-        /// Megapascal equal to 1 millibar
-        const double MPa = 0.0001;
-
-        /// Bar equal to 1 millibar
-        const double bar = 0.001;
-
-        /// Kilogram force per square centimetre equal to 1 millibar
-        const double kgf_cm2 = 0.001019716;
-
-        /// Kilopascal equal to 1 millibar
-        const double kPa = 0.1;
-
-        /// Hectopascal equal to 1 millibar
-        const double hPa = 1;
-
-        /// Kilogram force per square meter equal to 1 millibar
-        const double kgf_m2 = 10.19716;
-
-        /// Pascal equal to 1 millibar
-        const double Pa = 100;
-
-        /// Kilopound per square inch equal to 1 millibar
-        const double ksi = 0.000014504;
-
-        /// Pound per square inch equal to 1 millibar
-        const double psi = 0.01450377;
-
-        /// Pound per square foot equal to 1 millibar
-        const double psf = 2.088543;
-
-        /// Centimetre of water equal to 1 millibar
-        const double cmH2O = 1.019744289;
-
-        /// Millimetre of water equal to 1 millibar
-        const double mmH2O = 10.19744289;
-
-        /// Feet of water equal to 1 millibar
-        const double ftH2O = 0.033456177;
-
-        /// Inch of water equal to 1 millibar
-        const double inH2O = 0.401474129;
-
-        /// Physical atmosphere equal to 1 millibar
-        const double atm = 0.000986923;
-
-        /// Technical atmosphere equal to 1 millibar
-        const double tech_atm = 0.001019716;
-
-        /// Inch of mercury
-        const double inHg = 0.02953007;
-
-        /// Centimetre of mercury
-        const double cmHg = 0.07500638;
-
-        /// Millimetre of mercury
-        const double mmHg = 0.7500638;
-
-        /// Torr
-        const double torr = 0.7500638;
+    /*  -- 1 millibar used to convert --
+    *
+    *  Following values are based on 1 mbar.
+    */
 
     public:
 
@@ -146,6 +83,36 @@ namespace PressureConv
             /// Well... Torr
             TORR
         };
+
+    private:
+
+        /// Mappings for units based on 1 millibar
+        std::map<UNITS, double> unitMap =
+        {
+            {MBAR, 1},
+            {MPA, 0.0001},
+            {BAR, 0.001},
+            {KGF_CM2, 0.001019716},
+            {KPA, 0.1},
+            {HPA, 1},
+            {KGF_CM2, 10.19716},
+            {PA, 100},
+            {KSI, 0.000014504},
+            {PSI, 0.01450377},
+            {PSF, 2.088543},
+            {CMH2O, 1.019744289},
+            {MMH2O, 10.19744289},
+            {FTH20, 0.033456177},
+            {INH20, 0.401474129},
+            {ATM, 0.000986923},
+            {TECH_ATM, 0.001019716},
+            {INHG, 0.02953007},
+            {CMHG, 0.07500638},
+            {MMHG, 0.7500638},
+            {TORR, 0.7500638}
+        };
+
+    public:
 
         /// Converts value 'inVal' of unit 'inUnit' to 'outUnit' and returns the value.
         /// @param inUnit The unit of the given value
